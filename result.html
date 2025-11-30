@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>訂單結果</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .result-box {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      h1 {
+        color: #4CAF50;
+        text-align: center;
+        border-bottom: 3px solid #4CAF50;
+        padding-bottom: 10px;
+      }
+      .info-item {
+        margin: 15px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-left: 4px solid #4CAF50;
+        border-radius: 4px;
+      }
+      .label {
+        font-weight: bold;
+        color: #555;
+      }
+      .value {
+        color: #333;
+        margin-left: 10px;
+      }
+      ul {
+        margin: 5px 0;
+        padding-left: 20px;
+      }
+      li {
+        margin: 5px 0;
+        color: #333;
+      }
+      .back-link {
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+        padding: 10px;
+        background-color: #2196F3;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+      }
+      .back-link:hover {
+        background-color: #0b7dda;
+      }
+      .empty {
+        color: #999;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="result-box">
+      <h1>訂單確認</h1>
+      
+      <div class="info-item">
+        <span class="label">大名：</span>
+        <span class="value">{{ user }}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">甜度：</span>
+        <span class="value">
+          {% if sugar == 'L' %}
+            正常
+          {% elif sugar == 'M' %}
+            中糖
+          {% elif sugar == 'S' %}
+            微糖
+          {% else %}
+            {{ sugar }}
+          {% endif %}
+        </span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">加料：</span>
+        {% if mix %}
+          <ul>
+            {% for item in mix %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <span class="value empty">無加料</span>
+        {% endif %}
+      </div>
+      
+      <div class="info-item">
+        <span class="label">區域：</span>
+        <span class="value">{{ area }}</span>
+      </div>
+      
+      <a href="/" class="back-link">返回訂單表單</a>
+    </div>
+  </body>
+</html>
+
